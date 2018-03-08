@@ -1,0 +1,10 @@
+{% extends 'structure/base.html' %}
+
+{% block content %}
+        <div class="post">
+          <form method="post">{% csrf_token %}
+            <input id="inCpf" type="text"/>
+            <button id="btnConsulta" type="submit">Consultar</button>
+          </form>
+        </div>
+{% endblock %}
