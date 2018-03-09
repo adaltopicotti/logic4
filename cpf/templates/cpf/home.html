@@ -1,22 +1,50 @@
 {% extends 'structure/base.html' %}
 
 {% block content %}
-        <div class="post">
-          <div class="row">
-            <form method="post">{% csrf_token %}
-              <div class="form-row">
-                {{form.as_p}}
+<div class="post">
+  <div class="row">
+    <div class="col-md-6 col-off-set-2">
+      <div class="card">
+        <div class="card-header">Informe o CPF</div>
+        <div class="card-body">
+          <form method="post">{% csrf_token %}
+            <div class="form-row">
+              <div class="col">
+                {{form.cpfnumber}}
               </div>
-              <div class="form-row">
-                <button class="col-offset-2" type="submit">Consultar</button>
+              <div class="col">
+                <button class="btn" type="submit">Consultar</button>
               </div>
-            </form>
+            </div>
+          </form>
+          {% if result %}
+          <div class="card bg-light mb-3" >
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  CPF:
+                  {% if channel == "db" %}
+                  {{result.formattedcpf}}
+                  {% else %}
+                  {{result.cpf}}
+                  {% endif %}
+                </div>
+                <div class="card-header">
+                  Nome:
+                  {{result.nome}}
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="row">
-            <h5>CPF: {% if channel == "db" %}{{result.formattedcpf}}{% else %} {{result.cpf}} {% endif %}</h5>
-          </div>
-          <div class="row">
-            <h5>Nome: {{result.nome}}</h5>
-          </div>
+          {% endif %}
         </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-offset-2">
+    </div>
+  </div>
+</div>
 {% endblock %}

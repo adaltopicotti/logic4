@@ -29,6 +29,7 @@ def home(request):
     else:
         form = PessoaFisicaForm()
     return render(request, "cpf/home.html", {'form': form})
+    return render(request, "cpf/home.html", {'form': form, 'erro': "CPF Inválido!"})
 
 
 
