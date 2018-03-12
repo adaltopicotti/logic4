@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-6 col-off-set-2">
       <div class="card">
-        <div class="card-header">Informe o CPF</div>
+        <div class="card-header">Consulta de CPF</div>
         <div class="card-body">
           <form method="post">{% csrf_token %}
             <div class="form-row">
@@ -16,7 +16,7 @@
                 <button class="btn" type="submit">Consultar</button>
               </div>
             </div>
-          </form>
+          </form><br>
           {% if result %}
           <div class="card bg-light mb-3" >
             <div class="card-body">
