@@ -3,10 +3,13 @@ from .forms import PessoaFisicaForm
 from .models import PessoaFisica
 from django.http import JsonResponse, HttpResponse
 import json, requests
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
-def home(request):
+@login_required
+def cpf_app(request):
     if request.method == "POST":
         form = PessoaFisicaForm(request.POST)
         if form.is_valid():
@@ -15,7 +18,7 @@ def home(request):
                 try:
                     result = PessoaFisica.objects.get(cpfnumber=cpf)
                     form = PessoaFisicaForm()
-                    return render(request, "cpf/home.html", {'result':result, 'form': form, 'channel':"db"})
+                    return render(request, "cpf/cpf_search.html", {'result':result, 'form': form, 'channel':"db"})
                 except:
                     result = consulta_cpf(cpf)
                     form = form.save(commit=False)
@@ -25,11 +28,11 @@ def home(request):
                     form.consultaID = result['consultaID']
                     form.save()
                     form = PessoaFisicaForm()
-                    return render(request, "cpf/home.html", {'result':result, 'form': form, 'channel':"new"})
+                    return render(request, "cpf/cpf_search.html", {'result':result, 'form': form, 'channel':"new"})
     else:
         form = PessoaFisicaForm()
-    return render(request, "cpf/home.html", {'form': form})
-    return render(request, "cpf/home.html", {'form': form, 'erro': "CPF Inválido!"})
+    return render(request, "cpf/cpf_search.html", {'form': form})
+    return render(request, "cpf/cpf_search.html", {'form': form, 'erro': "CPF Inválido!"})
 
 
 

@@ -4,6 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    
+    url(r'^app/consultacpf/$', views.cpf_app, name='cpf_app'),
+
 ]

@@ -1,6 +1,15 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from website.forms import SignUpForm
+from website.forms import SignUpForm, LoginForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views, forms
+
+
+def home(request):
+    return render(request, 'website/structure/home.html', {'form': LoginForm} )
+
+
+
 
 def signup(request):
     if request.method == 'POST':
@@ -14,4 +23,4 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'website/user_manager/signup.html', {'form': form})
+    return render(request, 'website/accounts/signup.html', {'form': form})
