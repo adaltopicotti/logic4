@@ -8,7 +8,8 @@ from django.contrib.auth import views, forms
 def home(request):
     return render(request, 'website/structure/home.html', {'form': LoginForm} )
 
-
+def login_site(request):
+    return render(request, 'website/accounts/login.html', {'form': LoginForm} )
 
 
 def signup(request):

@@ -1,4 +1,4 @@
-{% extends 'structure/base.html' %}
+{% extends 'website/structure/base.html' %}
 
 {% block content %}
 {% if form.errors %}
@@ -16,9 +16,11 @@
             <td>{{ form.password.label_tag }}</td>
             <td>{{ form.password }}</td>
         </tr>
+        <tr>
+          {{next}}
         </table>
-
-        <input type="submit" value="login" />
+        <input class="btn btn-info" type="submit" value="login" />
         <input type="hidden" name="next" value="{{ next }}" />
+
     </form>
 {% endblock %}

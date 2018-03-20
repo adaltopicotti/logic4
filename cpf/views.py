@@ -3,6 +3,7 @@ from .forms import PessoaFisicaForm
 from .models import PessoaFisica
 from django.http import JsonResponse, HttpResponse
 import json, requests
+from website.forms import SignUpForm, LoginForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
@@ -28,10 +29,10 @@ def cpf_app(request):
                     form.consultaID = result['consultaID']
                     form.save()
                     form = PessoaFisicaForm()
-                    return render(request, "cpf/cpf_search.html", {'result':result, 'form': form, 'channel':"new"})
+                    return render(request, "cpf/cpf_search.html", {'result':result, 'cpfForm': form, 'channel':"new"})
     else:
         form = PessoaFisicaForm()
-    return render(request, "cpf/cpf_search.html", {'form': form})
+        return render(request, "cpf/cpf_search.html", {'form': form})
     return render(request, "cpf/cpf_search.html", {'form': form, 'erro': "CPF Inválido!"})
 
 
