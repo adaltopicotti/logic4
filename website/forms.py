@@ -14,9 +14,9 @@ class SignUpForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(max_length=30, required=False, help_text='Optional.',
+    username = forms.CharField(max_length=30, required=False, help_text='Informe seu usuário.',
         widget=forms.TextInput(
-            attrs={'class':'form-control', 'type':'login', 'placeholder':'login'}))
-    password = forms.CharField(max_length=30, required=False, help_text='Optional.',
+            attrs={'class':'form-control', 'type':'login', 'placeholder':'Digite seu usuário...'}))
+    password = forms.CharField(max_length=30, required=False, help_text='Informe sua senha.',
         widget=forms.TextInput(
-            attrs={'class':'form-control', 'type':'password', 'placeholder':'Password'}))
+            attrs={'class':'form-control', 'type':'password', 'placeholder':'Digite sua senha...'}))
