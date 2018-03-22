@@ -29,7 +29,7 @@ def cpf_app(request):
                     form.consultaID = result['consultaID']
                     form.save()
                     form = PessoaFisicaForm()
-                    return render(request, "cpf/cpf_search.html", {'result':result, 'cpfForm': form, 'channel':"new"})
+                    return render(request, "cpf/cpf_search.html", {'result':result, 'form': form, 'channel':"new"})
     else:
         form = PessoaFisicaForm()
         return render(request, "cpf/cpf_search.html", {'form': form})
