@@ -2,8 +2,6 @@ from django import forms
 from .models import PessoaFisica
 
 
-
-
 class PessoaFisicaForm(forms.ModelForm):
 
     cpfnumber = forms.CharField(widget=forms.TextInput(
