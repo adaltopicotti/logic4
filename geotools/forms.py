@@ -4,7 +4,7 @@ from .models import Coordinate
 
 class CoordinateForm(forms.ModelForm):
     lat_deg = forms.IntegerField(required=False, widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'class':'form-control', 'autofocus': 'autofocus'}))
     lat_min = forms.IntegerField(required=False, widget=forms.TextInput(
         attrs={'class':'form-control'}))
     lat_sec = forms.FloatField(required=False, widget=forms.TextInput(

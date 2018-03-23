@@ -11,29 +11,38 @@ def coordinate(request):
         if form.is_valid():
             lat = [request.POST['lat_deg'],request.POST['lat_min'], request.POST['lat_sec']]
             lon = [request.POST['lon_deg'],request.POST['lon_min'], request.POST['lon_sec']]
-        #try:
-            coord = calc_coord(lat, lon)
-            url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ repr(coord[0]) +','+ repr(coord[1]) +'&key=AIzaSyA_3wK_DfiwW94-1dg352-I8Zs__FGYrDo'
-            result = requests.get(url)
-            geoJson = result.json()
-            locate = geoJson['results'][0]['formatted_address']
-            return render(request, 'geotools/coordinate.html', {
-                'form': form,
-                'lat': str(coord[0]).replace(',','.'),
-                'lon': str(coord[1]).replace(',','.'),
-                'geoInfo': locate,
-                'page_title': 'Geo',
-                'coordInfo': coordInfo,
-                'latInfo': latInfo,
-                'lonInfo': lonInfo})
-            """except:
+            coordinate = "-" +lat[0] + "°" + lat[1] + "'" + lat[2] + "'' -" + lon[0] + "°" + lon[1] + "'" + lon[2] + "''"
+            try:
+                coord = calc_coord(lat, lon)
+                url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ repr(coord[0]) +','+ repr(coord[1]) +'&key=AIzaSyA_3wK_DfiwW94-1dg352-I8Zs__FGYrDo'
+                result = requests.get(url)
+                geoJson = result.json()
+                locate = geoJson['results'][0]['formatted_address']
                 return render(request, 'geotools/coordinate.html', {
-                    'r': '* Insira coordenadas válidas! Utilize apenas números e pontos.',
+                    'form': CoordinateForm(),
+                    'lat': str(coord[0]).replace(',','.'),
+                    'lon': str(coord[1]).replace(',','.'),
+                    'geoInfo': locate,
+                    'coord': coordinate,
+                    'coordInfo': coordInfo,
+                    'latInfo': latInfo,
+                    'lonInfo': lonInfo})
+            except:
+                return render(request, 'geotools/coordinate.html', {
+                    'form':form,
+                    'err': '* Insira coordenadas válidas! Utilize apenas números e pontos.',
                     'page_title': 'Geo',
                     'coordInfo': coordInfo,
                     'latInfo': latInfo,
                     'lonInfo': lonInfo})
-            """
+        return render(request, 'geotools/coordinate.html', {
+            'err': '* Insira coordenadas válidas! Utilize apenas números e pontos.',
+            'page_title': 'Geo',
+            'coordInfo': coordInfo,
+            'latInfo': latInfo,
+            'lonInfo': lonInfo,
+            'form': form})
+
     return render(request, 'geotools/coordinate.html', {
         'page_title': 'Geo',
         'coordInfo': coordInfo,

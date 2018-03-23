@@ -4,7 +4,7 @@
 
 
 <div class="row justify-content-center">
-	<div class="col-md-5">
+	<div class="col-md-6">
 		<div class="card mb-3">
 			<div class="card-header">Consulta de Coordenadas</div>
 			<div class="card-body">
@@ -50,8 +50,17 @@
 						<table class="table is-bordered">
 							<thead>
 							</thead>
+							{% if err %}
+							<div class="alert alert-danger" role="alert">
+							  {{err}}
+							</div>
+							{% endif %}
 							{% if geoInfo %}
 							<tbody>
+								<tr>
+									<td><a>Coordenadas</a></td>
+									<td>{{coord}}</td>
+								</tr>
 								<tr>
 									<td><a>Latitude</a></td>
 									<td>{{lat}}</td>
@@ -84,8 +93,8 @@
 </div>
 
 
-<div class="row fixed-center justify-content-center">
-	<div class="col-md-8" name="adsense">
+<div class="row justify-content-center">
+	<div class="col-md-6 col-md-auto" name="adsense">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<ins class="adsbygoogle"
 		style="display:block"
@@ -97,7 +106,7 @@
 		</script>
 		<br>
 	</div>
-	<div class="col-8">
+	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header"> O que é Coordenada Geográfica?</div>
 			<div class="card-body">
