@@ -24,7 +24,7 @@ def cpf_app(request):
                     result = consulta_cpf(cpf)
                     form = form.save(commit=False)
                     form.status = result['status']
-                    form.formattedcpf = result['cpf']
+                    #form.formattedcpf = result['cpf']
                     form.nome = result['nome']
                     form.consultaID = result['consultaID']
                     form.save()
