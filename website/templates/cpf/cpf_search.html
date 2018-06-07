@@ -27,6 +27,12 @@
               <div class="col-md-6">
                 {{form.cpfnumber}}
               </div>
+              {% if user == "bot" %}
+              <div class="col-md-1">
+                <input type="checkbox" class="form-check-input" id="Check1">
+                <label class="form-check-label" for="Check1">Não sou um robô</label>
+              </div>
+              {% endif %}
               <div class="col-md-1">
                 <button class="btn btn-secondary" type="submit">Consultar</button>
               </div>
