@@ -17,7 +17,7 @@ def coordinate(request):
                 url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ repr(coord[0]) +','+ repr(coord[1]) +'&key=AIzaSyA_3wK_DfiwW94-1dg352-I8Zs__FGYrDo'
                 result = requests.get(url)
                 geoJson = result.json()
-                locate = geoJson['results'][0]['formatted_address']
+                locate = geoJson['results'][1]['formatted_address']
                 return render(request, 'geotools/coordinate.html', {
                     'form': CoordinateForm(),
                     'lat': str(coord[0]).replace(',','.'),
