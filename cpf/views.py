@@ -38,8 +38,8 @@ def cpf_app(request):
 
 
 def consulta_cpf(cpfNumber):
-    key = '5d7a6e8dcda547e285708b2780cc87c7'
-    url = "https://api.cpfcnpj.com.br/" + key +"/1/json/" + cpfNumber
+
+    url = "https://api.cpfcnpj.com.br/" + ENV.key +"/1/json/" + cpfNumber
     result = requests.get(url)
     cpfJson = result.json()
     return cpfJson
