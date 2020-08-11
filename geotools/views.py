@@ -14,7 +14,7 @@ def coordinate(request):
             coordinate = "-" +lat[0] + "°" + lat[1] + "'" + lat[2] + "'' -" + lon[0] + "°" + lon[1] + "'" + lon[2] + "''"
             try:
                 coord = calc_coord(lat, lon)
-                url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ repr(coord[0]) +','+ repr(coord[1]) +'&key=AIzaSyA_3wK_DfiwW94-1dg352-I8Zs__FGYrDo'
+                url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ repr(coord[0]) +','+ repr(coord[1]) +ENV.mapKey
                 result = requests.get(url)
                 geoJson = result.json()
                 locate = geoJson['results'][1]['formatted_address']
